@@ -1,0 +1,214 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "betting odds",
+            "intents": [
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "GetBettingOdds",
+                    "slots": [
+                        {
+                            "name": "club",
+                            "type": "EPL_CLUBS",
+                            "samples": [
+                                "{club}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "betting odds for {club}",
+                        "{club}"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "EPL_CLUBS",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "huddersfield"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "cardiff"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "newcastle"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "burnley"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "fulham"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "southampton"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "brighton"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "everton"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "westham",
+                                "synonyms": [
+                                    "hammers"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "crystal palace",
+                                "synonyms": [
+                                    "palace"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "wolves",
+                                "synonyms": [
+                                    "wolvenhampton"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "leicester"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "bournemouth"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "arsenal",
+                                "synonyms": [
+                                    "gunners"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "tottenham hotspur",
+                                "synonyms": [
+                                    "spurs",
+                                    "tottenham"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "watford"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "liverpool",
+                                "synonyms": [
+                                    "the reds"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "manchester city",
+                                "synonyms": [
+                                    "city",
+                                    "man city"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "manchester united",
+                                "synonyms": [
+                                    "red devils",
+                                    "man united",
+                                    "man u"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "chelsea",
+                                "synonyms": [
+                                    "blues"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "GetBettingOdds",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "club",
+                            "type": "EPL_CLUBS",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1147944779159.1315184674575"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Slot.1147944779159.1315184674575",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "What club do you want odds for?"
+                    }
+                ]
+            }
+        ]
+    }
+}

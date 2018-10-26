@@ -1,4 +1,4 @@
-# Alex-betting-odds-skill
+# Alexa-betting-odds-skill
 
 Simple skill that enables Alexa fetch betting odds for 
 any football club in the English Premier League (EPL) in
@@ -32,3 +32,8 @@ iv. Zip the content `skill_env`. Do not zip the folder itself,
 Zip only its content
 
 The .ZIP file is now ready for deployment.
+
+When deploying the lambda, set `BETTING_API_KEY` as an environment
+variable. A key can be freely obtained from 
+[here](https://rapidapi.com/myanmarunicorn/api/Bhawlone/functions/Odds),
+however it does require registration.

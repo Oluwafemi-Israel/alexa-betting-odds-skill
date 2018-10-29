@@ -148,27 +148,23 @@ class GetBetOddsHandler(AbstractRequestHandler):
         return response_body['data']
 
     def odds(self, club_name):
-        fixtures = self.fixtures()
-        logger.info("Fixtures: {0}".format(fixtures))
-        logger.info(type(fixtures))
+        # Please note, the API used in this sample is a bit messy and doesn't provide a direct call to
+        # fetch odds by club name
+        # Hence, 2 API calls are needed, first to get the fixture, second to fetch the odds by fixture id
 
-        for fixture in fixtures:
+        for fixture in self.fixtures():
             if club_name in fixture['homeTeam']['name'].lower() or club_name in fixture['awayTeam']['name'].lower():
                 logger.info("Found fixture for {0}".format(club_name))
                 home_team, away_team = fixture['homeTeam']['name'], fixture['awayTeam']['name']
 
-                fixture_speech = "The fixture is: {0} vs {1}.".format(home_team, away_team)
+                fixture_speech = data.FIXTURE_SPEECH.format(home_team, away_team)
                 logger.info(fixture_speech)
 
-                commence_time_speech = "Commencement time is: {0}.".format(
+                commence_time_speech = data.COMMENCEMENT_TIME_SPEECH.format(
                     parser.parse(fixture['time']).strftime('%A %d %B %Y'))
                 logger.info(commence_time_speech)
 
-                odds = self.odds_for_match(fixture['id'])
-                logger.info("Odds: {0}".format(odds))
-                logger.info(type(odds))
-
-                for odd in odds:
+                for odd in self.odds_for_match(fixture['id']):
                     logger.info("In odds provided by {0}".format(odd['bookmaker']['name'].lower()))
 
                     # Only interested in odds from Bet365
@@ -179,15 +175,16 @@ class GetBetOddsHandler(AbstractRequestHandler):
                         home_win, draw, away_win = odd['initial']['home'], odd['initial']['draw'], odd['initial'][
                             'away']
 
-                        odds_speech = "The odds from Bet 365 are as follows. Home: {0}, Draw: {1}, Away: {0}.".format(
-                            home_win, draw, away_win)
+                        odds_speech = data.ODDS_SPEECH.format(home_win, draw, away_win)
                         logger.info(odds_speech)
 
-                        home_win_amount = "{0} Naira if {1} wins".format(round((home_win * 100) - 100, 2), home_team)
-                        draw_amount = "{0} Naira if there is a draw".format(round((draw * 100) - 100, 2))
-                        away_win_amount = "{0} Naira if {1} wins".format(round((away_win * 100) - 100, 2), away_team)
+                        home_win_amount = data.HOME_WIN_AMOUNT.format(round((home_win * data.STAKE) - data.STAKE, 2),
+                                                                      home_team)
+                        draw_amount = data.DRAW_AMOUNT.format(round((draw * data.STAKE) - data.STAKE, 2))
+                        away_win_amount = data.AWAY_WIN_AMOUNT.format(round((away_win * data.STAKE) - data.STAKE, 2),
+                                                                      away_team)
 
-                        odd_explanation = "For every 100 Naira stake, you'll make {0}, or {1}, or {2}".format(
+                        odd_explanation = data.ODD_EXPLANATION.format(
                             home_win_amount,
                             draw_amount,
                             away_win_amount)
@@ -198,6 +195,10 @@ class GetBetOddsHandler(AbstractRequestHandler):
                         logger.info(total_speech)
 
                         return total_speech
+                    else:
+                        return data.UNABLE_TO_GET_BET365_ODDS
+            else:
+                return data.UNABLE_TO_GET_FIXTURE
 
 
 class RepeatHandler(AbstractRequestHandler):

@@ -22,3 +22,19 @@ ASK_SPECIFIC_CLUBS = "Please ask about an EPL club"
 
 ASK_AGAIN = "Check odds for another club"
 
+UNABLE_TO_GET_FIXTURE = "I'm sorry, I'm unable to get your requested fixture at this moment"
+
+UNABLE_TO_GET_BET365_ODDS = "I'm sorry, I'm unable to get odds from Bet 365 at this moment"
+
+FIXTURE_SPEECH = "The fixture is: {0} vs {1}."
+
+COMMENCEMENT_TIME_SPEECH = "Commencement time is: {0}."
+
+ODDS_SPEECH = "The odds from Bet 365 are as follows. Home: {0}, Draw: {1}, Away: {0}."
+
+HOME_WIN_AMOUNT = "{0} Naira if {1} wins"
+DRAW_AMOUNT = "{0} Naira if there is a draw"
+AWAY_WIN_AMOUNT = "{0} Naira if {1} wins"
+ODD_EXPLANATION = "For every 100 Naira stake, you'll make {0}, or {1}, or {2}"
+
+STAKE = 100
